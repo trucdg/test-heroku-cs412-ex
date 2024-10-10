@@ -1,0 +1,32 @@
+
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+<h2>Create a Comment about {{article.title}}</h2>
+
+<form method="POST">
+    {% csrf_token %}
+
+    <!-- The "form" has already been defined for us because of the CreateCommentForm in forms.ModelForm -->
+    <table>
+        <!-- Display as a table -->
+        {{form.as_table}} 
+        <tr>
+            <td>
+                <input type="submit" name="submit" value="Create Comment" />
+            </td>
+
+            <td>
+
+            </td>
+        </tr>
+    </table>
+    
+</form>
+
+<form action="{% url 'article' article.pk %}">
+    <input type="Submit" name="cancel" value="CANCEL">
+</form>
+
+{% endblock %}
